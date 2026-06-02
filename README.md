@@ -1,7 +1,5 @@
 # Lab 5 - K-Means Clustering
 
-Project này chỉ làm phần **K-Means** trong bài học máy thống kê. Phần Gaussian Mixture Model chưa làm theo yêu cầu.
-
 ## Cấu trúc thư mục
 
 ```text
