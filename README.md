@@ -44,12 +44,12 @@ Sau khi chạy, xem kết quả trong thư mục `outputs/`:
 
 ### Assignment 1: ảnh hưởng của khởi tạo centroid ngẫu nhiên
 
-K-Means phụ thuộc vào vị trí centroid ban đầu. Nếu khởi tạo tốt, thuật toán hội tụ nhanh và tìm đúng ba cụm. Nếu khởi tạo kém, có thể hội tụ vào nghiệm cục bộ, inertia cao hơn hoặc một centroid bị kéo về vùng không tối ưu. Vì vậy trong thực tế nên chạy K-Means nhiều lần với nhiều seed khác nhau rồi chọn mô hình có inertia nhỏ nhất.
+K-Means phụ thuộc vào vị trí centroid ban đầu. Trong thí nghiệm này, các seed khởi tạo khác nhau đều hội tụ về nghiệm có cùng inertia và accuracy, cho thấy dữ liệu có ba cụm khá rõ ràng. Tuy nhiên, số vòng lặp để hội tụ khác nhau giữa các seed, ví dụ có seed hội tụ nhanh hơn và có seed cần nhiều vòng lặp hơn. Vì vậy trong thực tế vẫn nên chạy K-Means nhiều lần với nhiều seed khác nhau rồi chọn kết quả có inertia nhỏ nhất.
 
 ### Assignment 2: ảnh hưởng của kích thước cụm không cân bằng
 
-Khi số lượng điểm giữa các cụm chênh lệch lớn, cụm lớn có ảnh hưởng mạnh hơn lên vị trí centroid. K-Means có xu hướng tối thiểu hóa tổng bình phương khoảng cách nên có thể ưu tiên mô tả tốt cụm đông điểm hơn cụm ít điểm. Điều này làm cụm nhỏ dễ bị phân sai hơn so với trường hợp các cụm cân bằng.
+Khi số lượng điểm giữa các cụm chênh lệch lớn, cụm lớn có thể ảnh hưởng mạnh hơn đến vị trí centroid vì K-Means tối thiểu hóa tổng bình phương khoảng cách trên toàn bộ dữ liệu. Trong thí nghiệm này, mặc dù kích thước cụm không cân bằng, các cụm vẫn tách khá rõ nên K-Means vẫn đạt accuracy cao. Điều này cho thấy mất cân bằng kích thước có thể gây khó khăn, nhưng mức độ ảnh hưởng còn phụ thuộc vào khoảng cách và độ chồng lấn giữa các cụm.
 
 ### Assignment 3: ảnh hưởng của phân phối có phương sai lớn theo một chiều
 
-Cụm thứ ba dùng ma trận hiệp phương sai `[[10, 0], [0, 1]]`, nên dữ liệu bị kéo dài theo trục x. K-Means giả định cụm có dạng gần cầu vì dùng khoảng cách Euclidean đến centroid. Khi một cụm bị kéo dài, ranh giới K-Means có thể cắt cụm này thành nhiều phần hoặc trộn nó với cụm khác, làm hiệu năng giảm so với dữ liệu Gaussian tròn đều.
+Cụm thứ ba dùng ma trận hiệp phương sai `[[10, 0], [0, 1]]`, nên dữ liệu bị kéo dài theo trục x. K-Means dùng khoảng cách Euclidean đến centroid nên phù hợp hơn với các cụm có dạng gần tròn. Khi một cụm bị kéo dài, thuật toán dễ phân cụm kém chính xác hơn so với trường hợp các cụm Gaussian tròn đều. Kết quả thực nghiệm cũng cho thấy Assignment 3 có accuracy thấp hơn Assignment 1 và Assignment 2.
